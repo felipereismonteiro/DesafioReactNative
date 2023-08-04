@@ -46,18 +46,19 @@ export default function InputSearchUserInfo({ handleFindUser, error, topInput }:
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  ${(props: { topInput: boolean; }) =>
+  ${(props: { topInput: boolean }) =>
     props.topInput &&
     `
     position: absolute;
     top: 20px;
     right: 0px;
     margin: 10px;
-  `}
+    z-index: 1;
+    `}
 `;
 
+
 const InputContainer = styled.View`
-  position: relative;
   flex: 1;
   justify-content: center;
   align-items: center;
