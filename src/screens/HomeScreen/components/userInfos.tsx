@@ -27,7 +27,7 @@ export default function UserInfos({ userInfos }: Props) {
       {userInfos.location && (
         <ContainerLocationUser>
           <FontAwesome5Icon name="map-marker-alt" size={15} />
-          <Text>tex</Text>
+          <Text>{userInfos.location}</Text>
         </ContainerLocationUser>
       )}
     </ContainerInfoUser>
