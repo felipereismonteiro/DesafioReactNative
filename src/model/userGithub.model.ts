@@ -34,7 +34,10 @@ export interface UserModel {
 }
 
 export interface UserRepositoryModel {
+<<<<<<< HEAD
   id: number;
+=======
+>>>>>>> 29b0568 (feat: Buscando o repositorio do usuário em questão)
   name: string;
   language: string | null;
   description: string | null;
