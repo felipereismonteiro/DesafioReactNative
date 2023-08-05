@@ -4,9 +4,8 @@ type Props = {
 
 import { UserModelObjToSave } from "@/model/userGithub.model";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text, TouchableWithoutFeedback } from "react-native";
+import { Text, TouchableWithoutFeedback, View } from "react-native";
 import styled from "styled-components/native";
 
 export default function SideBarContent({ handleUserDetails }: Props) {
@@ -25,8 +24,8 @@ export default function SideBarContent({ handleUserDetails }: Props) {
 
   return (
     <>
-      {users.map((user) => (
-        <>
+      {users.map((user, index) => (
+        <View key={index}>
           <ContainerUser>
             <TouchableWithoutFeedback onPress={() => handleUserDetails(user.login)}>
               <UserAvatar source={{ uri: user.avatarUrl }} />
@@ -38,7 +37,7 @@ export default function SideBarContent({ handleUserDetails }: Props) {
             </ContainerUserInfos>
           </ContainerUser>
           <LineWidth />
-        </>
+        </View>
       ))}
     </>
   );
