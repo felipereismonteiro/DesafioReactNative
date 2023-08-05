@@ -33,6 +33,14 @@ export interface UserModel {
   updated_at: Date;
 }
 
+export interface UserRepositoryModel {
+  name: string;
+  language: string | null;
+  description: string | null;
+  createdAt: Date;
+  lastPush: Date;
+}
+
 export interface UserModelObjToSave {
   name: string;
   login: string;

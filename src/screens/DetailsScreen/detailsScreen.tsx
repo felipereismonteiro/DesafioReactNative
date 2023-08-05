@@ -1,5 +1,6 @@
 import { GithubRoute } from "@/api/GithubRoute";
-import { UserModel } from "@/model/userGithub.model";
+import UserInfosDetailedScreen from "@/components/screenComponents/detailedScreenContainer/userInfosDetailedScreen";
+import { UserModel, UserRepositoryModel } from "@/model/userGithub.model";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
@@ -9,19 +10,28 @@ import styled from "styled-components/native";
 
 export default function DetailsScreen() {
   const [userInfos, setUserInfos] = useState<UserModel>();
+  const [userRepos, setUserRepos] = useState<UserRepositoryModel[] | undefined | void>();
   const route = useRoute();
   const navigation = useNavigation<any>();
-
-  console.log(userInfos);
 
   useEffect(() => {
     const param: any = route.params;
     if (param) {
       const response = GithubRoute.FindUser(param.username);
+      const responseRepos = GithubRoute.FindUserRepos(param.username);
 
       response
         .then((res) => {
           setUserInfos(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      responseRepos
+        .then((res) => {
+          console.log(res)
+          setUserRepos(setUserRepos);
         })
         .catch((err) => {
           console.log(err);
@@ -37,12 +47,11 @@ export default function DetailsScreen() {
     <MainContainer>
       <TouchableWithoutFeedback onPress={handleChangeScreen}>
         <BackIcon>
-          <Icon
-            name="back"
-            size={25}
-          />
+          <Icon name="back" size={15} />
         </BackIcon>
       </TouchableWithoutFeedback>
+      <UserInfosDetailedScreen userInfos={userInfos} />
+      <LineView />
     </MainContainer>
   );
 }
@@ -59,7 +68,14 @@ const BackIcon = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border: 2px solid black;
+`;
+
+const LineView = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+  margin: 10px 0px;
 `;

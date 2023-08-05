@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { GithubRoute } from "@/api/GithubRoute";
 import { UserModel, UserModelObjToSave } from "@/model/userGithub.model";
-import UserInfos from "../../components/screenComponents/userInfos";
-import SideBar from "@/components/screenComponents/sideBar";
-import InputSearchUserInfo from "@/components/screenComponents/inputSearchUserInfo";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "expo-router";
+import InputSearchUserInfo from "@/components/screenComponents/mainScreenComponents/inputSearchUserInfo";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import SideBar from "@/components/screenComponents/mainScreenComponents/sideBar";
+import UserInfos from "@/components/screenComponents/mainScreenComponents/userInfos";
 
 export default function HomeScreen() {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
