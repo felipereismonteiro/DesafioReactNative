@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import { GithubRoute } from "@/api/GithubRoute";
 import { UserModel } from "@/model/userGithub.model";
-import InputUserInfo from "./components/inputUserInfo";
-import styled from "styled-components/native";
+import InputSearchUserInfo from "./components/inputSearchUserInfo";
+import UserInfos from "./components/userInfos";
 
 export default function HomeScreen({ navigation }: any) {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
   const [error, setError] = useState<boolean>(false);
-  console.log(userInfos ? true : false);
 
   const handleFindUser = async ({ userName }: { userName: string }) => {
     const usernameRegex =
@@ -33,15 +32,12 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <>
-        <InputUserInfo handleFindUser={handleFindUser} error={error} topInput={userInfos ? true : false}/>
-      
+      <InputSearchUserInfo
+        handleFindUser={handleFindUser}
+        error={error}
+        topInput={userInfos ? true : false}
+      />
+      {userInfos && <UserInfos userInfos={userInfos} />}
     </>
   );
 }
-
-const ContainerInput = styled.View`
-  position: absolute;
-  top: 20px;
-  right: 0px;
-  margin: 10px;
-`

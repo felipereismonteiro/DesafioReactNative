@@ -7,7 +7,7 @@ node_modules/
 .expo/
 dist/
 web-build/
-anotacoes.txt
+wanotacoes.txt
 
 # Native
 *.orig.*

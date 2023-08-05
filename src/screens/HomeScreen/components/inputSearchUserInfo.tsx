@@ -4,13 +4,13 @@ type Props = {
  topInput: boolean;
 }
 
-import FontAwesome5Icon from "@/components/fontAwesome5.icon";
-import { Formik } from "formik";
-import IonIcon from "@/components/ionIcon.icon";
 import ErrorMessage from "@/components/errorMessage";
+import FontAwesome5Icon from "@/components/fontAwesome5.icon";
+import IonIcon from "@/components/ionIcon.icon";
+import { Formik } from "formik";
 import styled from "styled-components/native";
 
-export default function InputUserInfo({ handleFindUser, error, topInput }: Props) {
+export default function InputSearchUserInfo({ handleFindUser, error, topInput }: Props) {
  return(
   <Container topInput={topInput}>
       <Formik
@@ -46,18 +46,19 @@ export default function InputUserInfo({ handleFindUser, error, topInput }: Props
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  ${props =>
+  ${(props: { topInput: boolean }) =>
     props.topInput &&
     `
     position: absolute;
     top: 20px;
     right: 0px;
     margin: 10px;
-  `}
+    z-index: 1;
+    `}
 `;
 
+
 const InputContainer = styled.View`
-  position: relative;
   flex: 1;
   justify-content: center;
   align-items: center;
