@@ -10,8 +10,8 @@ const RootLayout = () => {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name='Home Screen' component={HomeScreen}></Stack.Screen>
-        <Stack.Screen  name='Details Screen' component={DetailsScreen}></Stack.Screen>
+        <Stack.Screen name='HomeScreen' component={HomeScreen}></Stack.Screen>
+        <Stack.Screen  name='DetailsScreen' component={DetailsScreen}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

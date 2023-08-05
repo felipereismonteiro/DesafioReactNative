@@ -67,7 +67,7 @@ export default function HomeScreen() {
   };
 
   const handleUserDetails = (username: string) => {
-    navigation.navigate("Details Screen", { username })
+    navigation.navigate("DetailsScreen", { username })
   }
 
   return (

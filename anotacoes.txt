@@ -8,3 +8,16 @@ style - Style (estilo):
 test - Test (teste):
 
 https://api.github.com/users/{username}
+
+Foto,
+nome,
+login,
+localização,
+ID,
+quantidade de seguidores,
+quantidade de repositórios públicos,
+lista com todos os repositórios da pessoa
+(nome do repositório, linguagem utilizada,
+descrição,
+data de criação,
+data do último push).
