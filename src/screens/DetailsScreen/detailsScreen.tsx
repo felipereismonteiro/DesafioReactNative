@@ -90,3 +90,10 @@ const LineView = styled.View`
   background-color: gray;
   margin: 10px 0px;
 `;
+
+const LineView = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+  margin: 10px 0px;
+`;
