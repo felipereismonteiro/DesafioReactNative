@@ -59,7 +59,6 @@ const BackIcon = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: #cbcbcb;
   width: 50px;
   height: 50px;
   border: 2px solid black;
