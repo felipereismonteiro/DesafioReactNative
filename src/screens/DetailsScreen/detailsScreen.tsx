@@ -1,16 +1,20 @@
 import { GithubRoute } from "@/api/GithubRoute";
 import UserInfosDetailedScreen from "@/components/screenComponents/detailedScreenContainer/userInfosDetailedScreen";
+import UserRepoDetails from "@/components/screenComponents/detailedScreenContainer/userReposDetails";
 import { UserModel, UserRepositoryModel } from "@/model/userGithub.model";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
+import { ScrollView } from "react-native";
 import { TouchableWithoutFeedback } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import styled from "styled-components/native";
 
 export default function DetailsScreen() {
   const [userInfos, setUserInfos] = useState<UserModel>();
-  const [userRepos, setUserRepos] = useState<UserRepositoryModel[] | undefined | void>();
+  const [userRepos, setUserRepos] = useState<
+    UserRepositoryModel[] | undefined | void
+  >();
   const route = useRoute();
   const navigation = useNavigation<any>();
 
@@ -30,8 +34,7 @@ export default function DetailsScreen() {
 
       responseRepos
         .then((res) => {
-          console.log(res)
-          setUserRepos(setUserRepos);
+          setUserRepos(res);
         })
         .catch((err) => {
           console.log(err);
@@ -44,7 +47,7 @@ export default function DetailsScreen() {
   };
 
   return (
-    <MainContainer>
+    <>
       <TouchableWithoutFeedback onPress={handleChangeScreen}>
         <BackIcon>
           <Icon name="back" size={15} />
@@ -52,12 +55,21 @@ export default function DetailsScreen() {
       </TouchableWithoutFeedback>
       <UserInfosDetailedScreen userInfos={userInfos} />
       <LineView />
-    </MainContainer>
+      <ScrollView>
+        <MainContainer>
+          {userRepos &&
+            userRepos.map((repo) => (
+              <UserRepoDetails key={repo.id} repo={repo} />
+            ))}
+        </MainContainer>
+      </ScrollView>
+    </>
   );
 }
 
 const MainContainer = styled.View`
   padding: 10px;
+  overflow: scroll;
 `;
 
 const BackIcon = styled.View`
@@ -70,7 +82,6 @@ const BackIcon = styled.View`
   align-items: center;
   width: 30px;
   height: 30px;
-  border: 2px solid black;
 `;
 
 const LineView = styled.View`

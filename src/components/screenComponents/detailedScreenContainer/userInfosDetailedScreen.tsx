@@ -41,6 +41,7 @@ const MainContainer = styled.View`
   align-items: center;
   max-width: 80vw;
   overflow: hidden;
+  margin: 10px;
 `;
 
 const InfosUserContainer = styled.View`

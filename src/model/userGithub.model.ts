@@ -34,6 +34,7 @@ export interface UserModel {
 }
 
 export interface UserRepositoryModel {
+  id: number;
   name: string;
   language: string | null;
   description: string | null;
