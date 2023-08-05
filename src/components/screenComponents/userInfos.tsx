@@ -1,5 +1,6 @@
 type Props = {
   userInfos: UserModel;
+  handleUserDetails: (username: string) => void;
 };
 
 import { UserModel } from "@/model/userGithub.model";
@@ -9,17 +10,14 @@ import { Text, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import FontAwesome5Icon from "@/components/fontAwesome5.icon";
 
-export default function UserInfos({ userInfos }: Props) {
+export default function UserInfos({ userInfos, handleUserDetails }: Props) {
   const navigation = useNavigation<StackNavigationProp<any>>();
   console.log(userInfos);
 
-  const handleUserInfosDetailsPage = () => {
-    navigation.navigate("Details Screen", { name: "Details Screen" });
-  };
 
   return (
     <ContainerInfoUser>
-      <TouchableOpacity onPress={handleUserInfosDetailsPage}>
+      <TouchableOpacity onPress={() =>  handleUserDetails(userInfos.login)}>
         <AvatarUser source={{ uri: userInfos.avatar_url }} />
       </TouchableOpacity>
       <UserProfileName>{userInfos.name}</UserProfileName>

@@ -1,10 +1,14 @@
+type Props = {
+  handleUserDetails: (username: string) => void;
+}
+
 import { useState } from "react";
 import { TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components/native";
 import Icon from "react-native-vector-icons/Ionicons";
 import SideBarContent from "./sideBarContent";
 
-export default function SideBar() {
+export default function SideBar({ handleUserDetails }: Props) {
   const [sideBarOpen, setSideBarOpen] = useState(true);
 
   const handleSideBarOpen = () => {
@@ -22,7 +26,7 @@ export default function SideBar() {
       {sideBarOpen && (
         <>
           <SideBarContainer>
-            <SideBarContent />
+            <SideBarContent handleUserDetails={handleUserDetails} />
           </SideBarContainer>
           <TouchableWithoutFeedback onPress={handleSideBarOpen}>
             <MainContainer></MainContainer>

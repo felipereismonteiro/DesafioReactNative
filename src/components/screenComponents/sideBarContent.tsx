@@ -1,12 +1,16 @@
+type Props = {
+  handleUserDetails: (username: string) => void;
+}
+
 import { UserModelObjToSave } from "@/model/userGithub.model";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
-import { Text } from "react-native";
+import { Text, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components/native";
 
-export default function SideBarContent() {
+export default function SideBarContent({ handleUserDetails }: Props) {
   const [users, setUsers] = useState<UserModelObjToSave[]>([]);
-  console.log(users);
 
   useEffect(() => {
     const searchedUsers = AsyncStorage.getItem("SearchedUsers");
@@ -24,10 +28,12 @@ export default function SideBarContent() {
       {users.map((user) => (
         <>
           <ContainerUser>
-            <UserAvatar source={{ uri: user.avatarUrl }} />
+            <TouchableWithoutFeedback onPress={() => handleUserDetails(user.login)}>
+              <UserAvatar source={{ uri: user.avatarUrl }} />
+            </TouchableWithoutFeedback>
             <ContainerUserInfos>
               <UserName numberOfLines={1}>{user.name}</UserName>
-              <Text numberOfLines={1}>{user.login}</Text>
+              <UserLogin numberOfLines={1}>{user.login}</UserLogin>
               <Text numberOfLines={1}>{user.location}</Text>
             </ContainerUserInfos>
           </ContainerUser>
@@ -63,4 +69,7 @@ const LineWidth = styled.View`
 `;
 const UserName = styled.Text`
   font-weight: bold;
-`
+`;
+const UserLogin = styled.Text`
+  color: gray;
+`;

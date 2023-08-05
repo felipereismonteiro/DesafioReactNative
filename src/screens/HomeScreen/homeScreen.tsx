@@ -5,10 +5,12 @@ import UserInfos from "../../components/screenComponents/userInfos";
 import SideBar from "@/components/screenComponents/sideBar";
 import InputSearchUserInfo from "@/components/screenComponents/inputSearchUserInfo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "expo-router";
 
 export default function HomeScreen() {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
   const [error, setError] = useState<boolean>(false);
+  const navigation = useNavigation<any>();
 
   const handleFindUser = async ({ userName }: { userName: string }) => {
     const usernameRegex =
@@ -64,15 +66,19 @@ export default function HomeScreen() {
     await AsyncStorage.setItem(key, JSON.stringify(newArray));
   };
 
+  const handleUserDetails = (username: string) => {
+    navigation.navigate("Details Screen", { username })
+  }
+
   return (
     <>
-      <SideBar />
+      <SideBar handleUserDetails={handleUserDetails} />
       <InputSearchUserInfo
         handleFindUser={handleFindUser}
         error={error}
         topInput={userInfos ? true : false}
       />
-      {userInfos && <UserInfos userInfos={userInfos} />}
+      {userInfos && <UserInfos userInfos={userInfos} handleUserDetails={handleUserDetails} />}
     </>
   );
 }
