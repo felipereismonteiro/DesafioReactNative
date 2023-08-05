@@ -11,7 +11,7 @@ import SideBarContent from "./sideBarContent";
 export default function SideBar({ handleUserDetails }: Props) {
   const [sideBarOpen, setSideBarOpen] = useState(false);
 
-  const handleSideBarOpen = () => {
+  const handleSideBarOpen: any = () => {
     setSideBarOpen(!sideBarOpen);
   };
 
@@ -21,7 +21,7 @@ export default function SideBar({ handleUserDetails }: Props) {
         onPress={handleSideBarOpen}
         name="menu"
         size={30}
-        style={{ margin: 10, position: "absolute", zIndex: 20 }}
+        style={{ margin: 15, position: "absolute", zIndex: 20 }}
       />
       {sideBarOpen && (
         <>
