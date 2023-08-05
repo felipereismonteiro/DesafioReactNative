@@ -9,7 +9,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 import SideBarContent from "./sideBarContent";
 
 export default function SideBar({ handleUserDetails }: Props) {
-  const [sideBarOpen, setSideBarOpen] = useState(true);
+  const [sideBarOpen, setSideBarOpen] = useState(false);
 
   const handleSideBarOpen = () => {
     setSideBarOpen(!sideBarOpen);

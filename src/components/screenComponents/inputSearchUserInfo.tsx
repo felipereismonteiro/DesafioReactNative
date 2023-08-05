@@ -35,10 +35,11 @@ export default function InputSearchUserInfo({ handleFindUser, error, topInput }:
               placeholder="Pesquisar Usuário"
               value={values.userName}
             />
+            {error && <ErrorMessage />}
           </InputContainer>
+        
         )}
       </Formik>
-      {error && <ErrorMessage />}
     </Container>
  )
 }
@@ -62,6 +63,7 @@ const InputContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 const ContainerSearch = styled.View`

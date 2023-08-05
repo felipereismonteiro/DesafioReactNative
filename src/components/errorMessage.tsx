@@ -8,8 +8,8 @@ export default function SearchUserErrorMessage() {
 
 const ErrorMessageText = styled.Text`
  color: red;
- position: absolute;
- margin-top: 120px;
+ position: fixed;
+ bottom: 210px;
  text-align: center;
  gap: 5px;
 `
