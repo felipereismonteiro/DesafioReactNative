@@ -32,3 +32,10 @@ export interface UserModel {
   created_at: Date;
   updated_at: Date;
 }
+
+export interface UserModelObjToSave {
+  name: string;
+  login: string;
+  location: string;
+  avatarUrl: string;
+}

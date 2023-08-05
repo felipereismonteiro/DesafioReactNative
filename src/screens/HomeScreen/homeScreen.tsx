@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { GithubRoute } from "@/api/GithubRoute";
-import { UserModel } from "@/model/userGithub.model";
-import InputSearchUserInfo from "./components/inputSearchUserInfo";
-import UserInfos from "./components/userInfos";
+import { UserModel, UserModelObjToSave } from "@/model/userGithub.model";
+import UserInfos from "../../components/screenComponents/userInfos";
+import SideBar from "@/components/screenComponents/sideBar";
+import InputSearchUserInfo from "@/components/screenComponents/inputSearchUserInfo";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "expo-router";
 
-export default function HomeScreen({ navigation }: any) {
+export default function HomeScreen() {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
   const [error, setError] = useState<boolean>(false);
+  const navigation = useNavigation<any>();
 
   const handleFindUser = async ({ userName }: { userName: string }) => {
     const usernameRegex =
@@ -23,6 +27,14 @@ export default function HomeScreen({ navigation }: any) {
     try {
       const response = await GithubRoute.FindUser(userName);
       setUserInfos(response);
+
+      const objToSave: UserModelObjToSave = {
+        name: response.name,
+        login: response.login,
+        location: response.location,
+        avatarUrl: response.avatar_url,
+      };
+      handleSaveSearchedUsers("SearchedUsers", objToSave);
       setError(false);
     } catch (err) {
       console.log(err);
@@ -30,14 +42,43 @@ export default function HomeScreen({ navigation }: any) {
     }
   };
 
+  const handleSaveSearchedUsers = async (
+    key: string,
+    obj: UserModelObjToSave
+  ) => {
+    const existingArray = await AsyncStorage.getItem(key);
+
+    let newArray = [];
+    if (existingArray) {
+      const array = JSON.parse(existingArray);
+
+      for (let i = 0; i < array.length; i++) {
+        const objToCheck = array[i];
+        if (objToCheck.login === obj.login) {
+          array.splice(i, 1);
+        }
+      }
+
+      newArray = array;
+    }
+    newArray.push(obj);
+
+    await AsyncStorage.setItem(key, JSON.stringify(newArray));
+  };
+
+  const handleUserDetails = (username: string) => {
+    navigation.navigate("Details Screen", { username })
+  }
+
   return (
     <>
+      <SideBar handleUserDetails={handleUserDetails} />
       <InputSearchUserInfo
         handleFindUser={handleFindUser}
         error={error}
         topInput={userInfos ? true : false}
       />
-      {userInfos && <UserInfos userInfos={userInfos} />}
+      {userInfos && <UserInfos userInfos={userInfos} handleUserDetails={handleUserDetails} />}
     </>
   );
 }
