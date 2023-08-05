@@ -3,6 +3,7 @@ import { GithubRoute } from "@/api/GithubRoute";
 import { UserModel } from "@/model/userGithub.model";
 import InputSearchUserInfo from "./components/inputSearchUserInfo";
 import UserInfos from "./components/userInfos";
+import SideBar from "./components/sideBar";
 
 export default function HomeScreen({ navigation }: any) {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
@@ -32,6 +33,7 @@ export default function HomeScreen({ navigation }: any) {
 
   return (
     <>
+      <SideBar />
       <InputSearchUserInfo
         handleFindUser={handleFindUser}
         error={error}
