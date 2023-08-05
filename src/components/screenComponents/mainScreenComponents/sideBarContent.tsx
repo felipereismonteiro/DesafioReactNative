@@ -4,10 +4,8 @@ type Props = {
 
 import { UserModelObjToSave } from "@/model/userGithub.model";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
-import { View } from "react-native";
-import { Text, TouchableWithoutFeedback } from "react-native";
+import { Text, TouchableWithoutFeedback, View } from "react-native";
 import styled from "styled-components/native";
 
 export default function SideBarContent({ handleUserDetails }: Props) {

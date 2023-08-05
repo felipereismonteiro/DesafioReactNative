@@ -5,8 +5,7 @@ import { UserModel, UserRepositoryModel } from "@/model/userGithub.model";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
-import { ScrollView } from "react-native";
-import { TouchableWithoutFeedback } from "react-native";
+import { TouchableWithoutFeedback, ScrollView } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import styled from "styled-components/native";
 
@@ -82,13 +81,6 @@ const BackIcon = styled.View`
   align-items: center;
   width: 30px;
   height: 30px;
-`;
-
-const LineView = styled.View`
-  width: 100%;
-  height: 1px;
-  background-color: gray;
-  margin: 10px 0px;
 `;
 
 const LineView = styled.View`
