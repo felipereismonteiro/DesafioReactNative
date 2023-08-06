@@ -26,7 +26,7 @@ export default function UserRepoDetails({ repo }: Props) {
       </TopSideContainer>
       <Description>{repo.description}</Description>
       <BottomSideContainer>
-        <Language>#{repo.language}</Language>
+        {repo.language && <Language>${repo.language}</Language>}
         <LastUpdate>
           Última atualização{"\n"}
           {FormatarDataPadraoBrasileiro(repo.pushed_at)}
