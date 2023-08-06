@@ -9,8 +9,8 @@ import UserInfos from "../../components/screenComponents/mainScreenComponents/us
 //@ts-ignore
 import backImage from "../../../assets/images/backgroundImage.png";
 //@ts-ignore
-import MainLogo from "../../../assets/images/Logo.png";
 import { Image, TouchableWithoutFeedback } from "react-native";
+import styled from "styled-components/native";
 
 export default function HomeScreen() {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
@@ -99,6 +99,31 @@ export default function HomeScreen() {
           handleUserDetails={handleUserDetails}
         />
       )}
+      {!userInfos && <ContainerNoUser>
+        <NoUser>Pesquise um usuário!</NoUser>
+      </ContainerNoUser>}
+      <Footer/>
     </>
   );
 }
+
+const ContainerNoUser = styled.View`
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const NoUser = styled.Text`
+  font-size: 35px;
+  font-weight: bold;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
+`
+const Footer = styled.View`
+  width: 100%;
+  height: 26px;
+  background-color:#33ADAC;
+  position: absolute;
+  bottom: 0;
+;
+`;

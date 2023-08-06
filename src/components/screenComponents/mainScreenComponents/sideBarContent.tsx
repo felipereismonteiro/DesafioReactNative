@@ -33,7 +33,7 @@ export default function SideBarContent({ handleUserDetails }: Props) {
             <ContainerUserInfos>
               <UserName onPress={() => handleUserDetails(user.login)} numberOfLines={1}>{user.name}</UserName>
               <UserLogin numberOfLines={1}>{user.login}</UserLogin>
-              <Text numberOfLines={1}>{user.location}</Text>
+              {user.location && <Text numberOfLines={1}>{user.location}</Text>}
             </ContainerUserInfos>
           </ContainerUser>
           <LineWidth />
@@ -57,7 +57,7 @@ const ContainerUserInfos = styled.View`
 const UserAvatar = styled.Image`
   width: 50px;
   height: 50px;
-  border-radius: 100;
+  border-radius: ${100};
 `;
 
 const LineWidth = styled.View`
@@ -68,9 +68,7 @@ const LineWidth = styled.View`
 `;
 const UserName = styled.Text`
   font-weight: bold;
-  :hover {
-    text-decoration: underline;
-  }
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 const UserLogin = styled.Text`
   color: gray;

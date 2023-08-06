@@ -1,13 +1,15 @@
 import { GithubRoute } from "../../api/GithubRoute";
-import UserInfosDetailedScreen from "../..//components/screenComponents/detailedScreenContainer/userInfosDetailedScreen";
-import UserRepoDetails from "../..//components/screenComponents/detailedScreenContainer/userReposDetails";
 import { UserModel, UserRepositoryModel } from "../..//model/userGithub.model";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";
 import { TouchableWithoutFeedback, ScrollView } from "react-native";
-import Icon from "react-native-vector-icons/AntDesign";
+import UserRepoDetails from "../..//components/screenComponents/detailedScreenContainer/userReposDetails";
+import UserInfosDetailedScreen from "../../components/screenComponents/detailedScreenContainer/userInfosDetailedScreen";
+import Icon from "react-native-vector-icons/Ionicons";
 import styled from "styled-components/native";
+//@ts-ignore
+import PrincipalLogo from "../../../assets/images/Logo.png";
 
 export default function DetailsScreen() {
   const [userInfos, setUserInfos] = useState<UserModel>();
@@ -47,13 +49,15 @@ export default function DetailsScreen() {
 
   return (
     <>
-      <TouchableWithoutFeedback onPress={handleChangeScreen}>
-        <BackIcon>
-          <Icon name="back" size={15} />
-        </BackIcon>
-      </TouchableWithoutFeedback>
-      <UserInfosDetailedScreen userInfos={userInfos} />
-      <LineView />
+      <ContainerUserInfos>
+        <TouchableWithoutFeedback onPress={handleChangeScreen}>
+          <BackIcon>
+            <Icon name="chevron-back-outline" size={15} />
+          </BackIcon>
+        </TouchableWithoutFeedback>
+        <MainLogo source={PrincipalLogo} />
+        <UserInfosDetailedScreen userInfos={userInfos} />
+      </ContainerUserInfos>
       <ScrollView>
         <MainContainer>
           {userRepos &&
@@ -62,30 +66,43 @@ export default function DetailsScreen() {
             ))}
         </MainContainer>
       </ScrollView>
+      <Footer/>
     </>
   );
 }
 
+const ContainerUserInfos = styled.View`
+  background-color: #5C4794;
+  min-height: 240px;
+  margin-bottom: 10px;
+`;
+
 const MainContainer = styled.View`
   padding: 10px;
   overflow: scroll;
+  margin-bottom: 5px;
+`;
+
+const MainLogo = styled.Image`
+  margin: 20px auto;
 `;
 
 const BackIcon = styled.View`
   position: absolute;
-  right: 0;
-  border-radius: 50%;
-  margin: 0px 10px 0px 0px;
+  left: 0;
+  border-radius: ${50};
+  margin: 20px;
   flex: 1;
   justify-content: center;
   align-items: center;
   width: 30px;
   height: 30px;
+  background-color: white;
 `;
-
-const LineView = styled.View`
+const Footer = styled.View`
   width: 100%;
-  height: 1px;
-  background-color: gray;
-  margin: 10px 0px;
+  height: 26px;
+  background-color:#33ADAC;
+  position: absolute;
+  bottom: 0;
 `;

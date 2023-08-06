@@ -39,8 +39,8 @@ export interface UserRepositoryModel {
   language: string | null;
   description: string | null;
   html_url: string;
-  createdAt: Date;
-  lastPush: Date;
+  created_at: string;
+  pushed_at: string;
 }
 
 export interface UserModelObjToSave {
