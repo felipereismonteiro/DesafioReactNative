@@ -1,4 +1,5 @@
-import { UserModel, UserRepositoryModel } from "@/model/userGithub.model";
+import { UserModel, UserRepositoryModel } from "../model/userGithub.model";
+
 import axios from "axios";
 
 const GitHubUrl = "https://api.github.com";

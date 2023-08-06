@@ -1,15 +1,22 @@
 import styled from "styled-components/native";
 
 export default function SearchUserErrorMessage() {
- return(
-  <ErrorMessageText>Usuário invalido<br/>Usuário do github não deve conter:<br/>Espaços.<br/>Caracteres Especiais<br/>Pontuações e Acentos<br/><br/></ErrorMessageText>
- )
+  return (
+    <ErrorMessageText>
+      Usuário inválido{"\n"}
+      Usuário do GitHub não deve conter:{"\n"}
+      Espaços.{"\n"}
+      Caracteres Especiais{"\n"}
+      Pontuações e Acentos{"\n"}
+      {"\n"}
+    </ErrorMessageText>
+  );
 }
 
 const ErrorMessageText = styled.Text`
- color: red;
- position: fixed;
- bottom: 210px;
- text-align: center;
- gap: 5px;
-`
+  color: red;
+  position: absolute;
+  bottom: 0px;
+  text-align: center;
+  gap: 5px;
+`;

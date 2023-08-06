@@ -1,7 +1,7 @@
-import { GithubRoute } from "@/api/GithubRoute";
-import UserInfosDetailedScreen from "@/components/screenComponents/detailedScreenContainer/userInfosDetailedScreen";
-import UserRepoDetails from "@/components/screenComponents/detailedScreenContainer/userReposDetails";
-import { UserModel, UserRepositoryModel } from "@/model/userGithub.model";
+import { GithubRoute } from "../../api/GithubRoute";
+import UserInfosDetailedScreen from "../..//components/screenComponents/detailedScreenContainer/userInfosDetailedScreen";
+import UserRepoDetails from "../..//components/screenComponents/detailedScreenContainer/userReposDetails";
+import { UserModel, UserRepositoryModel } from "../..//model/userGithub.model";
 import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { useEffect, useState } from "react";

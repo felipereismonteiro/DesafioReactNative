@@ -1,18 +1,23 @@
 type Props = {
- handleFindUser: ({ userName }: { userName: string }) => void;
- error: boolean;
- topInput: boolean;
-}
+  handleFindUser: ({ userName }: { userName: string }) => void;
+  error: boolean;
+  topInput: boolean;
+};
 
-import ErrorMessage from "@/components/errorMessage";
-import FontAwesome5Icon from "@/components/fontAwesome5.icon";
-import IonIcon from "@/components/ionIcon.icon";
+import ErrorMessage from "../../../components/errorMessage";
+import FontAwesome5Icon from "../../../components/fontAwesome5.icon";
+import Icon from "react-native-vector-icons/Ionicons";
+import IonIcon from "../../../components/ionIcon.icon";
 import { Formik } from "formik";
 import styled from "styled-components/native";
 
-export default function InputSearchUserInfo({ handleFindUser, error, topInput }: Props) {
- return(
-  <Container topInput={topInput}>
+export default function InputSearchUserInfo({
+  handleFindUser,
+  error,
+  topInput,
+}: Props) {
+  return (
+    <Container topInput={topInput}>
       <Formik
         initialValues={{
           userName: "",
@@ -26,44 +31,40 @@ export default function InputSearchUserInfo({ handleFindUser, error, topInput }:
             </ContainerSearch>
             <ContainerSubmit>
               <SendButton
-                onPress={handleSubmit}
-                title={<IonIcon name="send" size={15} />}
-              />
+                title={"     "}
+                onPress={() => handleSubmit()}
+              ></SendButton>
+              <Icon name="send" size={15} style={{ position: "absolute" }} />
             </ContainerSubmit>
             <SearchUser
               onChangeText={handleChange("userName")}
               placeholder="Pesquisar Usuário"
               value={values.userName}
             />
-            {error && <ErrorMessage />}
+            {error ? <ErrorMessage /> : ""}
           </InputContainer>
-        
         )}
       </Formik>
     </Container>
- )
+  );
 }
 
 const Container = styled.View`
   flex: 1;
   align-items: center;
-  ${(props: { topInput: boolean }) =>
-    props.topInput &&
-    `
-    position: absolute;
-    top: 20px;
-    right: 0px;
-    margin: 10px;
-    z-index: 1;
-    `}
+  position: absolute;
+  right: 0px;
+  top: 10px;
+  z-index: 1;
 `;
-
 
 const InputContainer = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
   position: relative;
+  background-color: white;
+  border-radius: 5px;
 `;
 
 const ContainerSearch = styled.View`
@@ -78,6 +79,7 @@ const ContainerSubmit = styled.View`
   position: absolute;
   right: 5px;
   flex: 1;
+  z-index: 340;
   justify-content: center;
   align-items: center;
 `;

@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { GithubRoute } from "@/api/GithubRoute";
-import { UserModel, UserModelObjToSave } from "@/model/userGithub.model";
+import { GithubRoute } from "../../api/GithubRoute";
+import { UserModel, UserModelObjToSave } from "../../model/userGithub.model";
 import { useNavigation } from "expo-router";
-import InputSearchUserInfo from "@/components/screenComponents/mainScreenComponents/inputSearchUserInfo";
+import InputSearchUserInfo from "../../components/screenComponents/mainScreenComponents/inputSearchUserInfo";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import SideBar from "@/components/screenComponents/mainScreenComponents/sideBar";
-import UserInfos from "@/components/screenComponents/mainScreenComponents/userInfos";
+import SideBar from "../../components/screenComponents/mainScreenComponents/sideBar";
+import UserInfos from "../../components/screenComponents/mainScreenComponents/userInfos";
+//@ts-ignore
+import backImage from "../../../assets/images/backgroundImage.png";
+import styled from "styled-components/native";
 
 export default function HomeScreen() {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
@@ -67,18 +70,26 @@ export default function HomeScreen() {
   };
 
   const handleUserDetails = (username: string) => {
-    navigation.navigate("DetailsScreen", { username })
-  }
+    navigation.navigate("DetailsScreen", { username });
+  };
 
   return (
     <>
-      <SideBar handleUserDetails={handleUserDetails} />
-      <InputSearchUserInfo
-        handleFindUser={handleFindUser}
-        error={error}
-        topInput={userInfos ? true : false}
-      />
-      {userInfos && <UserInfos userInfos={userInfos} handleUserDetails={handleUserDetails} />}
+      <BackgroundImage source={backImage} />
+        <SideBar handleUserDetails={handleUserDetails} />
+        <InputSearchUserInfo
+          handleFindUser={handleFindUser}
+          error={error}
+          topInput={userInfos ? true : false}
+        />
+        {userInfos && (
+          <UserInfos
+            userInfos={userInfos}
+            handleUserDetails={handleUserDetails}
+          />
+        )}
     </>
   );
 }
+
+const BackgroundImage = styled.Image``;
