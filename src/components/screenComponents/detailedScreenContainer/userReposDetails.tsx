@@ -29,7 +29,7 @@ const MainContainer = styled.View`
  margin-bottom: 20px;
 `;
 
-const RepoTitle = styled.View`
+const RepoTitle = styled.Text`
   font-size: 25px;
   color: blue;
   text-decoration: underline;

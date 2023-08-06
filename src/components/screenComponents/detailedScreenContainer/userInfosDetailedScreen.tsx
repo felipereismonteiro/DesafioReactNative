@@ -8,19 +8,20 @@ import { Text } from "react-native";
 import styled from "styled-components/native";
 
 export default function UserInfosDetailedScreen({ userInfos }: Props) {
-
   if (!userInfos) return <></>;
 
   return (
     <MainContainer>
-      <AvatarUser source={{ uri: userInfos.avatar_url }} />
+      <ContainerAvatarUser>
+        <AvatarUser source={{ uri: userInfos.avatar_url }} />
+      </ContainerAvatarUser>
       <InfosUserContainer>
         <UserName>{userInfos.name}</UserName>
         <LoginName>{userInfos.login}</LoginName>
         {userInfos.location && (
           <ContainerLocation>
-            <IonIcon name="map" size={15} />
-            <Text>{userInfos.location}</Text>
+            <IonIcon name="map" size={15} color="white" />
+            <LocationText>{userInfos.location}</LocationText>
           </ContainerLocation>
         )}
         <LineView />
@@ -47,20 +48,32 @@ const InfosUserContainer = styled.View`
   gap: 2px;
 `;
 
+const ContainerAvatarUser = styled.View`
+  min-width: 110px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50;
+  border: 1px solid gray;
+  max-width: 110px;
+  height: 110px;
+`;
+
 const AvatarUser = styled.Image`
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 50;
 `;
 
 const UserName = styled.Text`
   font-weight: bold;
   font-size: 20px;
   margin-bottom: -5px;
+  color: white;
 `;
 
 const LoginName = styled.Text`
-  color: #646464;
+  color: white;
   margin-bottom: -5px;
 `;
 
@@ -71,7 +84,13 @@ const ContainerLocation = styled.View`
   margin-top: 5px;
 `;
 
-const GenericText = styled.Text``;
+const LocationText = styled.Text`
+  color: white;
+`
+
+const GenericText = styled.Text`
+  color: white;
+`;
 
 const LineView = styled.View`
   width: 100%;
