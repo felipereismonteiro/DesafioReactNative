@@ -14,9 +14,9 @@ export default function SearchUserErrorMessage() {
 }
 
 const ErrorMessageText = styled.Text`
-  color: red;
+  color: #ff0000;
   position: absolute;
-  bottom: 0px;
+  top: 70px;
   text-align: center;
   gap: 5px;
 `;
