@@ -21,7 +21,7 @@ export default function HomeScreen() {
   const handleFindUser = async ({ userName }: { userName: string }) => {
     const usernameRegex =
       /^(?!.*(--|-{2,})|.*-$|.*-0)(?!.*github)[a-zA-Z0-9-]{1,39}$/;
-    const isValid = usernameRegex.test(userName);
+    const isValid = usernameRegex.test(userName.trim());
     if (!isValid) {
       setError(true);
       setTimeout(() => {
