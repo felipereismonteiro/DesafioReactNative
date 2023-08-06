@@ -1,6 +1,6 @@
 ### Passo 1
 Baixe o aplicativo
-[Download_DesafioClickSoft](./desafio_clicksoft.apk)
+[Download_DesafioClickSoft](desafio_clicksoft.apk)
 
 
 ### Passo 2
