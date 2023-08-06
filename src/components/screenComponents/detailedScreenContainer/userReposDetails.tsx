@@ -2,7 +2,7 @@ type Props = {
   repo: UserRepositoryModel;
 };
 
-import { UserRepositoryModel } from "@/model/userGithub.model";
+import { UserRepositoryModel } from "../../../model/userGithub.model";
 import { Linking } from "react-native";
 import { TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components/native";

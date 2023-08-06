@@ -2,13 +2,12 @@ type Props = {
   userInfos: UserModel | undefined;
 };
 
-import IonIcon from "@/components/fontAwesome5.icon";
-import { UserModel } from "@/model/userGithub.model";
+import IonIcon from "../../../components/fontAwesome5.icon";
+import { UserModel } from "../../../model/userGithub.model";
 import { Text } from "react-native";
 import styled from "styled-components/native";
 
 export default function UserInfosDetailedScreen({ userInfos }: Props) {
-  console.log(userInfos);
 
   if (!userInfos) return <></>;
 
