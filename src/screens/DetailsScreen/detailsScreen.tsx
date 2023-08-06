@@ -57,7 +57,6 @@ export default function DetailsScreen() {
         </TouchableWithoutFeedback>
         <MainLogo source={PrincipalLogo} />
         <UserInfosDetailedScreen userInfos={userInfos} />
-        <LineView />
       </ContainerUserInfos>
       <ScrollView>
         <MainContainer>
@@ -73,6 +72,8 @@ export default function DetailsScreen() {
 
 const ContainerUserInfos = styled.View`
   background-color: #5C4794;
+  min-height: 240px;
+  margin-bottom: 10px;
 `;
 
 const MainContainer = styled.View`
@@ -95,11 +96,4 @@ const BackIcon = styled.View`
   width: 30px;
   height: 30px;
   background-color: white;
-`;
-
-const LineView = styled.View`
-  width: 100%;
-  height: 1px;
-  background-color: gray;
-  margin: 10px 0px;
 `;

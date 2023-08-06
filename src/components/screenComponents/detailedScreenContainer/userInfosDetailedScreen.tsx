@@ -4,7 +4,6 @@ type Props = {
 
 import IonIcon from "../../../components/fontAwesome5.icon";
 import { UserModel } from "../../../model/userGithub.model";
-import { Text } from "react-native";
 import styled from "styled-components/native";
 
 export default function UserInfosDetailedScreen({ userInfos }: Props) {
@@ -13,6 +12,7 @@ export default function UserInfosDetailedScreen({ userInfos }: Props) {
   return (
     <MainContainer>
       <ContainerAvatarUser>
+
         <AvatarUser source={{ uri: userInfos.avatar_url }} />
       </ContainerAvatarUser>
       <InfosUserContainer>
@@ -49,20 +49,20 @@ const InfosUserContainer = styled.View`
 `;
 
 const ContainerAvatarUser = styled.View`
-  min-width: 110px;
+  min-width: 122px;
   flex: 1;
   justify-content: center;
   align-items: center;
-  border-radius: 50;
+  border-radius: ${100};
   border: 1px solid gray;
-  max-width: 110px;
-  height: 110px;
+  max-width: 122px;
+  height: 122px;
 `;
 
 const AvatarUser = styled.Image`
-  width: 100px;
-  height: 100px;
-  border-radius: 50;
+  width: 112px;
+  height: 112px;
+  border-radius: ${100};
 `;
 
 const UserName = styled.Text`
