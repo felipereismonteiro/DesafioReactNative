@@ -19,4 +19,5 @@ const ErrorMessageText = styled.Text`
   top: 70px;
   text-align: center;
   gap: 5px;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;

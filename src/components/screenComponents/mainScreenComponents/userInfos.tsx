@@ -26,7 +26,7 @@ export default function UserInfos({ userInfos, handleUserDetails }: Props) {
       <Text>{userInfos.login}</Text>
       {userInfos.location && (
         <ContainerLocationUser>
-          <FontAwesome5Icon name="map-marker-alt" size={15} />
+          <FontAwesome5Icon name="map-marker-alt" size={15} color={""} />
           <Text>{userInfos.location}</Text>
         </ContainerLocationUser>
       )}
@@ -43,11 +43,12 @@ const ContainerInfoUser = styled.View`
 const AvatarUser = styled.Image`
   width: 200px;
   height: 200px;
-  border-radius: 100px;
+  border-radius: ${100};
 `;
 const UserProfileName = styled.Text`
   font-size: 20px;
   font-weight: bold;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 const ContainerLocationUser = styled.View`
   display: flex;
@@ -59,6 +60,6 @@ const ContainerAvatarUserOutSide = styled.View`
   align-items: center;
   width: 210px;
   height: 210px;
-  border-radius: 100px;
+  border-radius: ${100};
   border: 1px solid #D9D9D9;
 `

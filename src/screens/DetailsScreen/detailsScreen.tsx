@@ -66,6 +66,7 @@ export default function DetailsScreen() {
             ))}
         </MainContainer>
       </ScrollView>
+      <Footer/>
     </>
   );
 }
@@ -79,6 +80,7 @@ const ContainerUserInfos = styled.View`
 const MainContainer = styled.View`
   padding: 10px;
   overflow: scroll;
+  margin-bottom: 5px;
 `;
 
 const MainLogo = styled.Image`
@@ -88,7 +90,7 @@ const MainLogo = styled.Image`
 const BackIcon = styled.View`
   position: absolute;
   left: 0;
-  border-radius: 50;
+  border-radius: ${50};
   margin: 20px;
   flex: 1;
   justify-content: center;
@@ -96,4 +98,11 @@ const BackIcon = styled.View`
   width: 30px;
   height: 30px;
   background-color: white;
+`;
+const Footer = styled.View`
+  width: 100%;
+  height: 26px;
+  background-color:#33ADAC;
+  position: absolute;
+  bottom: 0;
 `;

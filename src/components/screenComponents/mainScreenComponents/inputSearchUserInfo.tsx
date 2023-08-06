@@ -70,7 +70,7 @@ const InputContainer = styled.View`
   align-items: center;
   position: relative;
   background-color: white;
-  border-radius: 5px;
+  border-radius: ${5};
   margin-right: 10px;
 `;
 
@@ -89,9 +89,10 @@ const SearchUser = styled.TextInput`
   width: 60vw;
   max-width: 300px;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: ${5};
   padding: 10px 17% 10px 11%;
   text-align: center;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 
 const ContainerInputClosed = styled.View`

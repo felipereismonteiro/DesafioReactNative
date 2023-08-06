@@ -12,7 +12,6 @@ export default function UserInfosDetailedScreen({ userInfos }: Props) {
   return (
     <MainContainer>
       <ContainerAvatarUser>
-
         <AvatarUser source={{ uri: userInfos.avatar_url }} />
       </ContainerAvatarUser>
       <InfosUserContainer>
@@ -70,11 +69,13 @@ const UserName = styled.Text`
   font-size: 20px;
   margin-bottom: -5px;
   color: white;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 
 const LoginName = styled.Text`
   color: white;
   margin-bottom: -5px;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 
 const ContainerLocation = styled.View`
@@ -86,10 +87,12 @@ const ContainerLocation = styled.View`
 
 const LocationText = styled.Text`
   color: white;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `
 
 const GenericText = styled.Text`
   color: white;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 
 const LineView = styled.View`

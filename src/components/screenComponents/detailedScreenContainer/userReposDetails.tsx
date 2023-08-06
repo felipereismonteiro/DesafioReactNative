@@ -8,8 +8,6 @@ import styled from "styled-components/native";
 import FormatarDataPadraoBrasileiro from "../../hooks/formatarDataPadraoBrasileiro";
 
 export default function UserRepoDetails({ repo }: Props) {
-  console.log(repo);
-
   const handleRepo = () => {
     Linking.openURL(repo.html_url);
   };
@@ -47,6 +45,7 @@ const MainContainer = styled.View`
   position: relative;
   flex-direction: column;
   justify-content: space-between;
+  elevation: ${15};
 `;
 
 const RepoTitle = styled.Text`
@@ -54,15 +53,18 @@ const RepoTitle = styled.Text`
   color: white;
   text-decoration: underline;
   font-weight: bold;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
   text-overflow: ellipsis;
 `;
 const Description = styled.Text`
   color: white;
   width: 70%;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 const Language = styled.Text`
   color: white;
   font-weight: bold;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
 
 const Visibility = styled.Text`
@@ -73,6 +75,7 @@ const Visibility = styled.Text`
   border-radius: ${100};
   width: 80px;
   text-align: center;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
   margin-bottom: 2px;
 `;
 
@@ -86,6 +89,7 @@ const TopSideContainer = styled.View`
 
 const CreatedDate = styled.Text`
   color: white;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
   text-align: right;
 `;
 
@@ -100,4 +104,5 @@ const BottomSideContainer = styled.View`
 const LastUpdate = styled.Text`
   color: white;
   text-align: right;
+  ${({ theme }: { theme: any }) => theme && `font-family: ${theme.textFont};`}
 `;
