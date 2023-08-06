@@ -1,7 +1,8 @@
 type Props = {
   handleUserDetails: (username: string) => void;
 };
-
+// @ts-ignore
+import MainLogo from "../../../../assets/images/Logo.png";
 import { useState } from "react";
 import { ScrollView, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components/native";
@@ -17,12 +18,24 @@ export default function SideBar({ handleUserDetails }: Props) {
 
   return (
     <>
-      <Icon
-        onPress={handleSideBarOpen}
-        name="menu"
-        size={40}
-        style={{ margin: 15, position: "absolute", zIndex: 20 }}
-      />
+      {sideBarOpen ? (
+        <Icon
+          onPress={handleSideBarOpen}
+          name="close"
+          style={{ margin: 15, position: "absolute", zIndex: 20 }}
+          size={40}
+          color={"white"}
+        />
+      ) : (
+        <Icon
+          onPress={handleSideBarOpen}
+          name="menu"
+          size={40}
+          style={{ margin: 15, position: "absolute", zIndex: 20 }}
+          color={"white"}
+        />
+      )}
+      <PrincipalLogo source={MainLogo} />
       {sideBarOpen && (
         <>
           <SideBarContainer>
@@ -60,4 +73,10 @@ const MainContainer = styled.View`
   height: 100;
   width: 100vw;
   z-index: 10;
+`;
+
+const PrincipalLogo = styled.Image`
+  position: absolute;
+  left: 60px;
+  top: 25px;
 `;

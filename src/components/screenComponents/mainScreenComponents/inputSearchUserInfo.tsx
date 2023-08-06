@@ -2,49 +2,55 @@ type Props = {
   handleFindUser: ({ userName }: { userName: string }) => void;
   error: boolean;
   topInput: boolean;
+  handleInputOpen: (type: boolean) => void;
+  inputOpen: boolean;
 };
 
 import ErrorMessage from "../../../components/errorMessage";
 import FontAwesome5Icon from "../../../components/fontAwesome5.icon";
-import Icon from "react-native-vector-icons/Ionicons";
-import IonIcon from "../../../components/ionIcon.icon";
 import { Formik } from "formik";
 import styled from "styled-components/native";
+import { TouchableWithoutFeedback } from "react-native";
 
 export default function InputSearchUserInfo({
   handleFindUser,
   error,
   topInput,
+  handleInputOpen,
+  inputOpen,
 }: Props) {
   return (
     <Container topInput={topInput}>
-      <Formik
-        initialValues={{
-          userName: "",
-        }}
-        onSubmit={handleFindUser}
-      >
-        {({ handleChange, handleSubmit, values }) => (
-          <InputContainer>
-            <ContainerSearch>
-              <FontAwesome5Icon name="search" size={15} />
-            </ContainerSearch>
-            <ContainerSubmit>
-              <SendButton
-                title={"     "}
-                onPress={() => handleSubmit()}
-              ></SendButton>
-              <Icon name="send" size={15} style={{ position: "absolute" }} />
-            </ContainerSubmit>
-            <SearchUser
-              onChangeText={handleChange("userName")}
-              placeholder="Pesquisar Usuário"
-              value={values.userName}
-            />
-            {error ? <ErrorMessage /> : ""}
-          </InputContainer>
-        )}
-      </Formik>
+      {inputOpen ? (
+        <Formik
+          initialValues={{
+            userName: "",
+          }}
+          onSubmit={handleFindUser}
+        >
+          {({ handleChange, handleSubmit, values }) => (
+            <InputContainer>
+              <TouchableWithoutFeedback onPress={() => handleSubmit()}>
+                <ContainerSearch>
+                  <FontAwesome5Icon name="search" size={15} color="black"/>
+                </ContainerSearch>
+              </TouchableWithoutFeedback>
+              <SearchUser
+                onChangeText={handleChange("userName")}
+                placeholder="Pesquisar Usuário"
+                value={values.userName}
+              />
+              {error ? <ErrorMessage /> : ""}
+            </InputContainer>
+          )}
+        </Formik>
+      ) : (
+        <TouchableWithoutFeedback onPress={() => handleInputOpen(!inputOpen)}>
+          <ContainerInputClosed>
+            <FontAwesome5Icon name="search" size={15} color="white"/>
+          </ContainerInputClosed>
+        </TouchableWithoutFeedback>
+      )}
     </Container>
   );
 }
@@ -65,23 +71,18 @@ const InputContainer = styled.View`
   position: relative;
   background-color: white;
   border-radius: 5px;
+  margin-right: 10px;
 `;
 
 const ContainerSearch = styled.View`
   position: absolute;
-  left: 10px;
+  right: 10px;
   flex: 1;
   justify-content: center;
   align-items: center;
-`;
-
-const ContainerSubmit = styled.View`
-  position: absolute;
-  right: 5px;
-  flex: 1;
-  z-index: 340;
-  justify-content: center;
-  align-items: center;
+  z-index: 30;
+  width: 20%;
+  height: 50px;
 `;
 
 const SearchUser = styled.TextInput`
@@ -93,7 +94,12 @@ const SearchUser = styled.TextInput`
   text-align: center;
 `;
 
-const SendButton = styled.Button`
-  border-radius: 50%;
-  margin-right: -20px;
+const ContainerInputClosed = styled.View`
+  background-color: transparent;
+  width: 50px;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin-right: 16px;
 `;

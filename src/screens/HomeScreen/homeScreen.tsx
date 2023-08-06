@@ -8,10 +8,13 @@ import SideBar from "../../components/screenComponents/mainScreenComponents/side
 import UserInfos from "../../components/screenComponents/mainScreenComponents/userInfos";
 //@ts-ignore
 import backImage from "../../../assets/images/backgroundImage.png";
-import styled from "styled-components/native";
+//@ts-ignore
+import MainLogo from "../../../assets/images/Logo.png";
+import { Image, TouchableWithoutFeedback } from "react-native";
 
 export default function HomeScreen() {
   const [userInfos, setUserInfos] = useState<UserModel | undefined>();
+  const [inputOpen, setInputOpen] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const navigation = useNavigation<any>();
 
@@ -73,23 +76,29 @@ export default function HomeScreen() {
     navigation.navigate("DetailsScreen", { username });
   };
 
+  const handleInputOpen = (type: boolean) => {
+    setInputOpen(type);
+  };
+
   return (
     <>
-      <BackgroundImage source={backImage} />
-        <SideBar handleUserDetails={handleUserDetails} />
-        <InputSearchUserInfo
-          handleFindUser={handleFindUser}
-          error={error}
-          topInput={userInfos ? true : false}
+      <TouchableWithoutFeedback onPress={() => handleInputOpen(false)}>
+        <Image source={backImage} />
+      </TouchableWithoutFeedback>
+      <SideBar handleUserDetails={handleUserDetails} />
+      <InputSearchUserInfo
+        handleFindUser={handleFindUser}
+        error={error}
+        topInput={userInfos ? true : false}
+        handleInputOpen={handleInputOpen}
+        inputOpen={inputOpen}
+      />
+      {userInfos && (
+        <UserInfos
+          userInfos={userInfos}
+          handleUserDetails={handleUserDetails}
         />
-        {userInfos && (
-          <UserInfos
-            userInfos={userInfos}
-            handleUserDetails={handleUserDetails}
-          />
-        )}
+      )}
     </>
   );
 }
-
-const BackgroundImage = styled.Image``;
